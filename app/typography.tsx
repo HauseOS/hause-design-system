@@ -1,110 +1,137 @@
+'use client'
+
+import designTokens from "@/design-tokens.json"
+
 export default function TypographyPage() {
+  const typography = designTokens.typography
+
   return (
-    <div className="max-w-4xl space-y-12">
-      <section>
-        <h1 className="font-display text-5xl font-bold mb-4">Typography</h1>
-        <p className="text-xl text-foreground-muted">
-          Font families, sizes, weights, and line heights for Hause products.
+    <div className="space-y-8 sm:space-y-12">
+      <div className="space-y-2 sm:space-y-4">
+        <h1 className="font-display text-4xl sm:text-5xl font-bold">Typography</h1>
+        <p className="text-base sm:text-lg text-foreground-muted max-w-2xl">
+          Our typography system combines distinctive display fonts with clean, readable sans-serif for a warm and modern aesthetic.
         </p>
-      </section>
+      </div>
 
-      <section className="space-y-6">
-        <h2 className="font-display text-3xl font-bold">Font Families</h2>
-        <div className="space-y-6">
-          <div className="p-6 bg-surface border border-border rounded-lg">
-            <h3 className="text-sm font-semibold text-foreground-muted uppercase tracking-wide mb-3">
-              Display / Titles
-            </h3>
-            <p style={{ fontFamily: "'Almarena Neue', sans-serif" }} className="text-4xl font-bold mb-2">
-              Almarena Neue
-            </p>
-            <p className="text-sm text-foreground-muted">
-              Used for: H1, H2, H3, headings, titles
-            </p>
-          </div>
-
-          <div className="p-6 bg-surface border border-border rounded-lg">
-            <h3 className="text-sm font-semibold text-foreground-muted uppercase tracking-wide mb-3">
-              Sans / Body
-            </h3>
-            <p style={{ fontFamily: "'General Sans', sans-serif" }} className="text-2xl font-bold mb-2">
-              General Sans
-            </p>
-            <p className="text-sm text-foreground-muted">
-              Used for: Body text, labels, UI copy
-            </p>
-          </div>
-
-          <div className="p-6 bg-surface border border-border rounded-lg">
-            <h3 className="text-sm font-semibold text-foreground-muted uppercase tracking-wide mb-3">
-              Serif / Quotes
-            </h3>
-            <p style={{ fontFamily: "'Boska', serif" }} className="text-xl font-bold mb-2">
-              Boska
-            </p>
-            <p className="text-sm text-foreground-muted">
-              Used for: Quotes, callouts, special emphasis
-            </p>
-          </div>
-
-          <div className="p-6 bg-surface border border-border rounded-lg">
-            <h3 className="text-sm font-semibold text-foreground-muted uppercase tracking-wide mb-3">
-              Monospace / Code
-            </h3>
-            <p style={{ fontFamily: "'Monaco', monospace" }} className="text-lg mb-2">
-              Monaco
-            </p>
-            <p className="text-sm text-foreground-muted">
-              Used for: Code snippets, technical text
-            </p>
-          </div>
+      {/* Font Families */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Font Families</h2>
+        <div className="space-y-4 sm:space-y-6">
+          {Object.entries(typography.fontFamily).map(([key, value]) => (
+            <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-3">
+              <h3 className="font-semibold text-base sm:text-lg capitalize">{key}</h3>
+              <div style={{ fontFamily: value as string }} className="text-2xl sm:text-3xl">
+                The quick brown fox jumps over the lazy dog
+              </div>
+              <p className="text-xs sm:text-sm text-foreground-muted font-mono break-all">{value}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="space-y-6">
-        <h2 className="font-display text-3xl font-bold">Heading Scale</h2>
-        <div className="space-y-4">
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">H1 - 3rem</p>
-            <h1 className="text-5xl font-bold">This is a heading 1</h1>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">H2 - 2rem</p>
-            <h2 className="text-4xl font-bold">This is a heading 2</h2>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">H3 - 1.875rem</p>
-            <h3 className="text-3xl font-bold">This is a heading 3</h3>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">H4 - 1.5rem</p>
-            <h4 className="text-2xl font-bold">This is a heading 4</h4>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">H5 - 1.25rem</p>
-            <h5 className="text-xl font-bold">This is a heading 5</h5>
-          </div>
+      {/* Font Sizes */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Font Sizes</h2>
+        <div className="space-y-3 sm:space-y-4">
+          {Object.entries(typography.fontSize).map(([key, value]) => {
+            const [size, lineHeight] = typeof value === 'string' ? [value, 'normal'] : [value[0], value[1]?.lineHeight]
+            return (
+              <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <h3 className="font-semibold text-base sm:text-lg capitalize">{key}</h3>
+                  <p className="text-xs sm:text-sm text-foreground-muted font-mono">{size}, line-height: {lineHeight}</p>
+                </div>
+                <div style={{ fontSize: size }}>
+                  The quick brown fox jumps over the lazy dog
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 
-      <section className="space-y-6 pb-12">
-        <h2 className="font-display text-3xl font-bold">Font Weights</h2>
-        <div className="space-y-3">
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">Regular - 400</p>
-            <p className="font-normal text-lg">The quick brown fox jumps over the lazy dog</p>
+      {/* Font Weights */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Font Weights</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          {Object.entries(typography.fontWeight).map(([key, value]) => (
+            <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+              <h3 className="font-semibold text-base sm:text-lg capitalize">{key}</h3>
+              <div style={{ fontWeight: value as number }} className="text-2xl">
+                The quick brown fox
+              </div>
+              <p className="text-xs sm:text-sm text-foreground-muted">{value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Line Heights */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Line Heights</h2>
+        <div className="space-y-4 sm:space-y-6">
+          {Object.entries(typography.lineHeight).map(([key, value]) => (
+            <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <h3 className="font-semibold text-base sm:text-lg capitalize">{key}</h3>
+                <p className="text-xs sm:text-sm text-foreground-muted">{value}</p>
+              </div>
+              <div style={{ lineHeight: value as number }} className="text-base">
+                <p>The quick brown fox jumps over the lazy dog. This is a sample paragraph to demonstrate line height.</p>
+                <p className="mt-2">The quick brown fox jumps over the lazy dog.</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Letter Spacing */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Letter Spacing</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          {Object.entries(typography.letterSpacing).map(([key, value]) => (
+            <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+              <h3 className="font-semibold text-base sm:text-lg capitalize">{key}</h3>
+              <div style={{ letterSpacing: value as string }} className="text-lg">
+                THE QUICK BROWN FOX
+              </div>
+              <p className="text-xs sm:text-sm text-foreground-muted">{value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Usage Guidelines */}
+      <section className="space-y-4">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold">Usage Guidelines</h2>
+        <div className="space-y-3 sm:space-y-4">
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+            <h3 className="font-semibold text-base sm:text-lg">Display Font (Almarena Neue)</h3>
+            <p className="text-sm text-foreground-muted">
+              Use for headings (H1-H3), titles, and brand accents. Creates visual hierarchy and personality.
+            </p>
           </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">Medium - 500</p>
-            <p className="font-medium text-lg">The quick brown fox jumps over the lazy dog</p>
+
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+            <h3 className="font-semibold text-base sm:text-lg">Sans-Serif Font (General Sans)</h3>
+            <p className="text-sm text-foreground-muted">
+              Use for body text, buttons, and UI elements. Clean, modern, and highly readable.
+            </p>
           </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">Semibold - 600</p>
-            <p className="font-semibold text-lg">The quick brown fox jumps over the lazy dog</p>
+
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+            <h3 className="font-semibold text-base sm:text-lg">Serif Font (Boska)</h3>
+            <p className="text-sm text-foreground-muted">
+              Use for quotes, callouts, and special content. Adds elegance and distinction.
+            </p>
           </div>
-          <div>
-            <p className="text-xs font-semibold text-foreground-muted uppercase mb-2">Bold - 700</p>
-            <p className="font-bold text-lg">The quick brown fox jumps over the lazy dog</p>
+
+          <div className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
+            <h3 className="font-semibold text-base sm:text-lg">Monospace Font (Monaco)</h3>
+            <p className="text-sm text-foreground-muted">
+              Use for code blocks, technical documentation, and data display.
+            </p>
           </div>
         </div>
       </section>
