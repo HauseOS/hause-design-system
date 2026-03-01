@@ -1,8 +1,23 @@
 {
   "name": "@hause/design-system",
-  "version": "0.1.0",
-  "description": "Design tokens and components for Hause Collective products",
+  "version": "0.2.0",
+  "description": "Design tokens and components for Hause Collective",
   "type": "module",
+  "main": "./components/hause/index.ts",
+  "exports": {
+    ".": "./components/hause/index.ts",
+    "./components": "./components/hause/index.ts",
+    "./tokens": "./design-tokens.json",
+    "./config": "./tailwind.config.ts",
+    "./animations": "./lib/animations.ts"
+  },
+  "files": [
+    "components",
+    "lib",
+    "design-tokens.json",
+    "tailwind.config.ts",
+    "globals.css"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,5 +40,21 @@
     "tailwindcss": "^3.4.0",
     "postcss": "^8",
     "autoprefixer": "^10.4.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "keywords": [
+    "design-system",
+    "components",
+    "tailwind",
+    "ui",
+    "hause"
+  ],
+  "homepage": "https://hause-design.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HauseOS/hause-design-system"
   }
 }
