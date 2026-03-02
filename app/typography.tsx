@@ -35,7 +35,13 @@ export default function TypographyPage() {
         <h2 className="font-display text-2xl sm:text-3xl font-bold">Font Sizes</h2>
         <div className="space-y-3 sm:space-y-4">
           {Object.entries(typography.fontSize).map(([key, value]) => {
-            const [size, lineHeight] = typeof value === 'string' ? [value, 'normal'] : [value[0], value[1]?.lineHeight]
+            let size = '16px'
+            if (typeof value === 'string') {
+              size = value
+            } else if (Array.isArray(value)) {
+              size = String(value[0])
+            }
+            const lineHeight = 'normal'
             return (
               <div key={key} className="bg-surface border border-border rounded-lg p-4 sm:p-6 space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">

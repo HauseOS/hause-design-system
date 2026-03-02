@@ -111,7 +111,7 @@ export default {
             <h3 className="font-semibold text-base sm:text-lg">Badges</h3>
             <div className="flex flex-wrap gap-2 sm:gap-3">
               <Badge variant="default">Default</Badge>
-              <Badge variant="primary">Primary</Badge>
+              <Badge variant="secondary">Secondary</Badge>
               <Badge variant="success">Success</Badge>
               <Badge variant="warning">Warning</Badge>
               <Badge variant="error">Error</Badge>

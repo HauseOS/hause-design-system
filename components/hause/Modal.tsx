@@ -15,8 +15,8 @@ interface ModalContentProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Modal = React.forwardRef<
   HTMLDialogElement,
-  ModalProps & React.HTMLAttributes<HTMLDivElement>
->(({ open, onOpenChange, children, ...props }, ref) => {
+  ModalProps
+>(({ open, onOpenChange, children }, ref) => {
   const dialogRef = React.useRef<HTMLDialogElement>(null)
   React.useImperativeHandle(ref, () => dialogRef.current!)
 
@@ -31,13 +31,12 @@ const Modal = React.forwardRef<
   return (
     <dialog
       ref={dialogRef}
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLDialogElement>) => {
         if (e.target === e.currentTarget) {
           onOpenChange?.(false)
         }
       }}
       className="backdrop:bg-black/50 backdrop:backdrop-blur-sm rounded-lg shadow-xl"
-      {...props}
     >
       {children}
     </dialog>
