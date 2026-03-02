@@ -30,9 +30,7 @@
     "next": "^14.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
-    "@radix-ui/dialog": "^1.1.1",
-    "@radix-ui/tabs": "^1.0.4"
+    "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
